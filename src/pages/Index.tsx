@@ -2,6 +2,7 @@
 import { Mail, Globe, Phone, Twitter, Github, Linkedin, Instagram, Youtube, CheckCircle, MapPin, Calendar, Briefcase, GraduationCap, User, FolderOpen } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import BottomNavigation from "@/components/BottomNavigation";
 
 const Index = () => {
   const skills = [
@@ -83,7 +84,7 @@ const Index = () => {
     <div className="min-h-screen bg-black text-white">
       <div className="flex">
         {/* Left Sidebar */}
-        <div className="w-80 bg-gray-900 min-h-screen p-8 fixed left-0 top-0 overflow-y-auto">
+        <div id="profile" className="w-80 bg-gray-900 min-h-screen p-8 fixed left-0 top-0 overflow-y-auto">
           {/* Profile Section */}
           <div className="mb-8">
             <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-purple-600 rounded-full mb-4 flex items-center justify-center">
@@ -165,7 +166,7 @@ const Index = () => {
         {/* Right Content */}
         <div className="ml-80 flex-1 p-8 max-w-4xl">
           {/* Intro Section */}
-          <section className="mb-12">
+          <section id="intro" className="mb-12 pt-8">
             <h2 className="text-gray-400 text-xs uppercase tracking-wider mb-6">Intro</h2>
             <div className="space-y-4 text-gray-300 leading-relaxed">
               <p>
@@ -178,7 +179,7 @@ const Index = () => {
           </section>
 
           {/* Projects Section */}
-          <section className="mb-12">
+          <section id="projects" className="mb-12 pt-8">
             <h2 className="text-gray-400 text-xs uppercase tracking-wider mb-6">Projects</h2>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {projects.map((project, index) => (
@@ -211,7 +212,7 @@ const Index = () => {
           </section>
 
           {/* Experience Section */}
-          <section className="mb-12">
+          <section id="experience" className="mb-12 pt-8">
             <h2 className="text-gray-400 text-xs uppercase tracking-wider mb-6">Experience</h2>
             <div className="space-y-6">
               {experiences.map((exp, index) => (
@@ -242,7 +243,7 @@ const Index = () => {
           </section>
 
           {/* Education Section */}
-          <section className="mb-12">
+          <section id="education" className="mb-12 pt-8">
             <h2 className="text-gray-400 text-xs uppercase tracking-wider mb-6">Education</h2>
             <div className="space-y-6">
               {education.map((edu, index) => (
@@ -273,6 +274,9 @@ const Index = () => {
           </section>
         </div>
       </div>
+
+      {/* Bottom Navigation */}
+      <BottomNavigation />
     </div>
   );
 };
