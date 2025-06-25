@@ -1,5 +1,5 @@
 
-import { Mail, Globe, Phone, Twitter, Github, Linkedin, Instagram, Youtube, CheckCircle, MapPin, Calendar, Briefcase, GraduationCap, User, FolderOpen } from "lucide-react";
+import { Mail, Globe, Phone, Twitter, Github, Linkedin, Instagram, Youtube, CheckCircle, MapPin, Calendar, Briefcase, GraduationCap, User, FolderOpen, Award, ExternalLink } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import BottomNavigation from "@/components/BottomNavigation";
@@ -77,6 +77,54 @@ const Index = () => {
       period: "Sep 15 - Sep 18", 
       description: "Graduated with honors. Relevant coursework included Advanced Web Development, User Interface Design, and Software Systems.",
       color: "bg-orange-500"
+    }
+  ];
+
+  const certifications = [
+    {
+      title: "AWS Certified Developer Associate",
+      issuer: "Amazon Web Services",
+      issued: "2023",
+      color: "bg-orange-500"
+    },
+    {
+      title: "React Professional Developer",
+      issuer: "Meta",
+      issued: "2022",
+      color: "bg-blue-500"
+    },
+    {
+      title: "Google Cloud Professional",
+      issuer: "Google",
+      issued: "2021",
+      color: "bg-green-500"
+    }
+  ];
+
+  const contactInfo = [
+    {
+      label: "Email",
+      value: "hey@henrywalker.com",
+      icon: Mail,
+      href: "mailto:hey@henrywalker.com"
+    },
+    {
+      label: "Phone",
+      value: "+555 123 4567",
+      icon: Phone,
+      href: "tel:+5551234567"
+    },
+    {
+      label: "Website",
+      value: "henrywalker.com",
+      icon: Globe,
+      href: "https://henrywalker.com"
+    },
+    {
+      label: "LinkedIn",
+      value: "/henrywalker",
+      icon: Linkedin,
+      href: "https://linkedin.com/in/henrywalker"
     }
   ];
 
@@ -270,6 +318,57 @@ const Index = () => {
                   </div>
                 </div>
               ))}
+            </div>
+          </section>
+
+          {/* Certifications Section */}
+          <section id="certifications" className="mb-12 pt-8">
+            <h2 className="text-gray-400 text-xs uppercase tracking-wider mb-6">Certifications</h2>
+            <div className="space-y-6">
+              {certifications.map((cert, index) => (
+                <div key={index} className="flex gap-4 group">
+                  <div className={`w-12 h-12 ${cert.color} rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-200`}>
+                    <Award className="w-6 h-6 text-white" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-start justify-between mb-2">
+                      <div>
+                        <h3 className="text-lg font-semibold">{cert.title}</h3>
+                        <div className="flex items-center gap-2 text-sm text-gray-400">
+                          <span>{cert.issuer}</span>
+                        </div>
+                      </div>
+                      <div className="text-sm text-gray-400">Issued {cert.issued}</div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* Contact Section */}
+          <section id="contact" className="mb-12 pt-8">
+            <h2 className="text-gray-400 text-xs uppercase tracking-wider mb-6">Contact</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {contactInfo.map((contact, index) => {
+                const Icon = contact.icon;
+                return (
+                  <a 
+                    key={index}
+                    href={contact.href}
+                    className="flex items-center gap-4 p-4 bg-gray-900 border border-gray-800 rounded-lg hover:border-gray-700 transition-colors group"
+                  >
+                    <div className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center group-hover:bg-gray-700 transition-colors">
+                      <Icon className="w-5 h-5 text-gray-400 group-hover:text-white" />
+                    </div>
+                    <div>
+                      <div className="text-sm text-gray-400">{contact.label}</div>
+                      <div className="text-white font-medium">{contact.value}</div>
+                    </div>
+                    <ExternalLink className="w-4 h-4 text-gray-600 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </a>
+                );
+              })}
             </div>
           </section>
         </div>

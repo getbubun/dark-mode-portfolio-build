@@ -1,5 +1,5 @@
 
-import { Home, FolderOpen, Briefcase, GraduationCap, User } from "lucide-react";
+import { Home, FolderOpen, Briefcase, GraduationCap, User, Award, Phone } from "lucide-react";
 import { useState, useEffect } from "react";
 
 const BottomNavigation = () => {
@@ -10,6 +10,8 @@ const BottomNavigation = () => {
     { id: "projects", label: "Projects", icon: FolderOpen },
     { id: "experience", label: "Experience", icon: Briefcase },
     { id: "education", label: "Education", icon: GraduationCap },
+    { id: "certifications", label: "Certifications", icon: Award },
+    { id: "contact", label: "Contact", icon: Phone },
     { id: "profile", label: "Profile", icon: User }
   ];
 
