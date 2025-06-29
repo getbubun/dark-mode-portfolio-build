@@ -1,4 +1,3 @@
-
 import { Home, FolderOpen, Briefcase, GraduationCap, User, Award, Phone } from "lucide-react";
 import { useState, useEffect } from "react";
 
@@ -17,7 +16,7 @@ const BottomNavigation = () => {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      const offset = window.innerWidth < 1024 ? 100 : 50; // Account for mobile header
+      const offset = window.innerWidth < 1024 ? 100 : 50;
       const elementPosition = element.offsetTop - offset;
       window.scrollTo({
         top: elementPosition,
@@ -30,26 +29,35 @@ const BottomNavigation = () => {
     const handleScroll = () => {
       const sections = navItems.map(item => item.id);
       const offset = window.innerWidth < 1024 ? 120 : 100;
+      let currentSection = sections[0];
       
+      // Find the section closest to the top of the viewport
       for (const sectionId of sections) {
         const element = document.getElementById(sectionId);
         if (element) {
           const rect = element.getBoundingClientRect();
-          if (rect.top <= offset && rect.bottom >= offset) {
-            setActiveSection(sectionId);
-            break;
+          if (rect.top <= offset) {
+            currentSection = sectionId;
           }
         }
       }
+
+      // Special handling for contact section when near bottom of page
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 100) {
+        currentSection = 'contact';
+      }
+
+      setActiveSection(currentSection);
     };
 
     window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Check initial state
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [navItems]);
 
   return (
     <div className="fixed bottom-4 sm:bottom-6 left-1/2 transform -translate-x-1/2 z-50 px-4 w-full max-w-sm sm:max-w-none sm:w-auto">
-      <div className="bg-gray-900/90 backdrop-blur-md border border-gray-800 rounded-full px-3 sm:px-6 py-2 sm:py-3 overflow-x-auto">
+      <div className="bg-stone-900/30 backdrop-blur-md border border-gray-800/50 rounded-full px-3 sm:px-6 py-2 sm:py-3 overflow-x-auto shadow-xl">
         <div className="flex items-center gap-1 sm:gap-2 min-w-max">
           {navItems.map((item) => {
             const Icon = item.icon;
@@ -61,8 +69,8 @@ const BottomNavigation = () => {
                 onClick={() => scrollToSection(item.id)}
                 className={`flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-2 rounded-full transition-all duration-300 whitespace-nowrap ${
                   isActive 
-                    ? 'bg-blue-500 text-white shadow-lg scale-105' 
-                    : 'text-gray-400 hover:text-white hover:bg-gray-800'
+                    ? 'bg-zinc-800/80 text-white shadow-lg scale-105' 
+                    : 'text-gray-400 hover:text-white hover:bg-gray-800/50'
                 }`}
               >
                 <Icon className="w-4 h-4 flex-shrink-0" />
