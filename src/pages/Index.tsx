@@ -35,38 +35,25 @@ const Index = () => {
     "WebSockets", "PWA", "Tailwind CSS",
   ];
 
-  const languages = [
-    { name: "English", flag: "🇬🇧" },
-    { name: "German", flag: "🇩🇪" },
-    { name: "French", flag: "🇫🇷" },
-    { name: "Chinese", flag: "🇨🇳" }
-  ];
-
   const projects = [
     {
-      title: "Interactive Data Dashboard",
-      role: "Frontend Lead",
-      date: "Jan 24, 2024",
-      category: "Internal Tools",
+      title: "MovieFlix : AI-Powered Movie Recommendation",
+      // role: "Frontend Lead",
+      date: "Jan 24, 2025",
+      category: "Utility",
       color: "from-orange-400 to-orange-600",
+      link: "https://ai-powered-movie-search.vercel.app/",
     },
     {
       title: "Personal Finance Tracker", 
-      role: "Frontend Developer",
-      date: "Mar 15, 2024",
+      // role: "Frontend Developer",
+      date: "Mar 15, 2025",
       category: "Finance",
       color: "from-purple-400 to-purple-600",
     },
     {
-      title: "E-commerce Platform", 
-      role: "Full Stack Developer",
-      date: "Jun 20, 2024",
-      category: "E-commerce",
-      color: "from-blue-400 to-blue-600",
-    },
-    {
       title: "AI-Powered Task Manager",
-      role: "Full Stack Developer",
+      // role: "Full Stack Developer",
       date: "May 15, 2025",
       category: "Productivity",
       color: "from-green-400 to-green-600",
@@ -156,9 +143,9 @@ const Index = () => {
     },
     {
       label: "Website",
-      value: "manabdas.online",
+      value: "manabdas.vercel.app",
       icon: Globe,
-      href: "https://manabdas.online"
+      href: "https://manabdas.vercel.app"
     },
     {
       label: "LinkedIn",
@@ -276,11 +263,12 @@ const Index = () => {
               <h2 className="text-zinc-500 uppercase tracking-wider mb-6">Intro</h2>
               <div className="space-y-4 text-gray-300 leading-relaxed">
                 <p>
-                  I'm Manab, a frontend/full-stack engineer from Bengaluru, India. My expertise lies in building scalable, high-performance web applications using React, Angular, Node.js, and TypeScript.
+                  I'm Manab, a frontend/full-stack engineer from Bengaluru, India. 
+                  <br />
+                  My expertise lies in building scalable, high-performance web applications using React, Angular, Node.js, and TypeScript.
                 </p>
                 <p>
                   Skilled in translating Figma designs into clean, responsive UIs, building reusable component libraries, handling data-heavy rendering, and optimizing performance.
-                  Experienced in collaborating with cross-functional teams in agile environments to deliver user-focused, production-ready software.
                 </p>
               </div>
             </section>
@@ -290,35 +278,45 @@ const Index = () => {
               <h2 className="text-zinc-500 text-xs uppercase tracking-wider mb-6">Projects</h2>
               
               {/* Show grid layout below 1200px */}
-              <div className="block md:hidden">
+                <div className="block md:hidden">
                 <div className="grid grid-cols-1 gap-4">
                   {projects.map((project, index) => (
-                    <Card key={index} className="bg-zinc-900 border-gray-800 overflow-hidden group hover:border-gray-700 transition-all duration-300">
-                      <div className={`h-36 sm:h-48 bg-gradient-to-br ${project.color} relative`}>
-                        <div className="absolute bottom-3 left-3 z-10">
-                          <FolderOpen className="w-6 h-6 sm:w-8 sm:h-8 text-white/80" />
-                        </div>
+                  <a 
+                    key={index}
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={project.link ? 'cursor-pointer' : 'cursor-default'}
+                  >
+                    <Card className="bg-zinc-900 border-gray-800 overflow-hidden group hover:border-gray-700 transition-all duration-300">
+                    <div className={`h-36 sm:h-48 bg-gradient-to-br ${project.color} relative`}>
+                      <div className="absolute bottom-3 left-3 z-10">
+                      <FolderOpen className="w-6 h-6 sm:w-8 sm:h-8 text-white/80" />
                       </div>
-                      <div className="p-4 sm:p-6">
-                        <h3 className="text-base sm:text-lg  mb-3">{project.title}</h3>
-                        <div className="flex flex-wrap items-start gap-2 sm:gap-3 text-xs sm:text-sm text-neutral-500">
-                          <div className="flex items-center gap-1">
-                            <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                            <span>{project.date}</span>
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <Briefcase className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                            <span>{project.role}</span>
-                          </div>
-                          <Badge variant="outline" className="border-stone-700 w-fit text-neutral-500 text-xs">
-                            {project.category}
-                          </Badge>
-                        </div>
+                    </div>
+                    <div className="p-4 sm:p-6">
+                      <h3 className="text-base sm:text-lg  mb-3">{project.title}</h3>
+                      <div className="flex flex-wrap items-start gap-2 sm:gap-3 text-xs sm:text-sm text-neutral-500">
+                      <div className="flex items-center gap-1">
+                        <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                        <span>{project.date}</span>
                       </div>
+                      {/* <div className="flex items-center gap-1">
+                        <Briefcase className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                        <span>{project.role}</span>
+                      </div> */}
+                      {project.category && (
+                        <Badge variant="outline" className="border-stone-700 w-fit text-neutral-500 text-xs">
+                        {project.category}
+                        </Badge>
+                      )}
+                      </div>
+                    </div>
                     </Card>
+                  </a>
                   ))}
                 </div>
-              </div>
+                </div>
 
               {/* Show carousel layout above 1200px */}
               <div className="hidden md:block relative">
@@ -329,6 +327,13 @@ const Index = () => {
                   <CarouselContent className="-ml-2 md:-ml-4 overflow-visible">
                     {projects.map((project, index) => (
                       <CarouselItem key={index} className="pl-2 md:pl-4 basis-3/4 overflow-visible">
+                         <a 
+                          key={index}
+                          href={project.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={project.link ? 'cursor-pointer' : 'cursor-default'}
+                        >
                         <Card className="bg-zinc-900 border-gray-800 overflow-hidden group cursor-pointer">
                           <div className={`h-48 bg-gradient-to-br ${project.color} relative`}>
                             <div className="absolute bottom-4 left-4 z-10">
@@ -342,16 +347,17 @@ const Index = () => {
                                 <Calendar className="w-4 h-4" />
                                 <span>{project.date}</span>
                               </div>
-                              <div className="flex items-center gap-1">
+                              {/* <div className="flex items-center gap-1">
                                 <Briefcase className="w-4 h-4" />
                                 <span>{project.role}</span>
-                              </div>
+                              </div> */}
                               <Badge variant="outline" className="border-stone-700 w-fit text-neutral-500">
                                 {project.category}
                               </Badge>
                             </div>
                           </div>
                         </Card>
+                        </a>
                       </CarouselItem>
                     ))}
                   </CarouselContent>
